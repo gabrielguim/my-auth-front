@@ -1,0 +1,17 @@
+.card-wide.mdl-card {
+  width: 512px;
+  margin: 0 auto;
+}
+.card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('https://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
+}
+.card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.card-centered {
+  position: relative;
+  padding: 200px 0 0;
+}

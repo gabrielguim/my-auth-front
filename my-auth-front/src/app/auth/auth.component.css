@@ -1,0 +1,16 @@
+.card-wide.mdl-card {
+  margin: 0 auto;
+}
+
+.card-wide > .mdl-card__title {
+  color: #fff;
+  height: 100px;
+}
+.card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.card-centered {
+  position: relative;
+  padding: 200px 0 0;
+}
