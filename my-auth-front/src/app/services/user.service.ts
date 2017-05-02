@@ -48,6 +48,6 @@ export class UserService {
 
   public logoutUser() {
     window.sessionStorage.clear();
-  	this.router.navigate(['/auth']);
+  	this.router.navigate(['/signin']);
   }
 }

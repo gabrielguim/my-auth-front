@@ -11,8 +11,7 @@ import { AuthService } from './services/auth.service';
 export const router: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthService] },
   { path: '', component: AuthComponent, canActivate: [AuthService]},
-  { path: 'register', component: RegisterComponent },
-  { path: '**', redirectTo: '/'}
+  { path: 'register', component: RegisterComponent, canActivate: [AuthService]},
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

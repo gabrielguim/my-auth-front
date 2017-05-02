@@ -19,11 +19,16 @@ export class AuthService implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if (state.url === "/" && this.userService.isAuthenticated()) {
-       this.router.navigate(['/home']);
-       return false;
-    } else if(state.url !== "/"  && !this.userService.isAuthenticated()){
-      this.router.navigate(['/']);
+    if (this.userService.isAuthenticated()){
+      if (state.url === "/" || state.url === "/register"){
+        this.router.navigate(['/home']);
+        return false;
+      }
+    } else {
+      if (state.url !== "/" && state.url !== "/register") {
+        this.router.navigate(["/"]);
+        return false;
+      }
     }
 
     return true;
