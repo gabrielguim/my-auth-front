@@ -20,13 +20,13 @@ export class UserService {
 
   public authUser(username, password){
     let data = { username: username, password: password };
-    let url = 'http://localhost:8000/api/user/auth';
+    let url = 'https://my-auth-app.herokuapp.com/api/user/auth';
     return this.http.post(url, data);
   }
 
   public registerUser(name, username, password) {
     let data = { name: name, username: username, password: password };
-    let url = 'http://localhost:8000/api/user/new';
+    let url = 'https://my-auth-app.herokuapp.com/api/user/new';
     return this.http.post(url, data);
   }
 
@@ -39,7 +39,7 @@ export class UserService {
   }
 
   public loginUser(username){
-    this.http.get('http://localhost:8000/api/user/' + username )
+    this.http.get('https://my-auth-app.herokuapp.com/api/user/' + username )
       .subscribe(data => {
           let user = data['_body'];
           window.sessionStorage.setItem('user', user);
