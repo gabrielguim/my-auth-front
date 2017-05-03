@@ -12,7 +12,8 @@ import { AppComponent } from '../app.component'
 export class AuthComponent implements OnInit {
 
   constructor(private router: Router,
-              private userService: UserService) { }
+              private userService: UserService,
+              private appComponent: AppComponent) { }
 
   ngOnInit() { }
 
@@ -21,8 +22,9 @@ export class AuthComponent implements OnInit {
       .subscribe(data => {
           var user = JSON.parse(data['_body']);
           this.userService.loginUser(user.username);
+          this.appComponent.showSnack("Usuário autenticado com sucesso!");
       }, error => {
-          console.log(error);
+          this.appComponent.showSnack("Erro ao autenticar o usuário!");
       });
   }
 

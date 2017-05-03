@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { AppComponent } from '../app.component'
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,8 @@ import { UserService } from '../services/user.service';
 export class RegisterComponent implements OnInit {
 
   constructor(private router: Router,
-              private userService: UserService) { }
+              private userService: UserService,
+              private appComponent: AppComponent) { }
 
   ngOnInit() {
   }
@@ -21,8 +23,9 @@ export class RegisterComponent implements OnInit {
       .subscribe(data => {
           var user = JSON.parse(data['_body']);
           this.router.navigate(['/']);
+          this.appComponent.showSnack("Usuário registrado com sucesso!");
       }, error => {
-          console.log(error);
+          this.appComponent.showSnack("Erro ao registrar usuário!");
       });
   }
 
