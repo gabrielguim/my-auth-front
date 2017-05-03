@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { AppComponent } from '../app.component'
 
 @Component({
   selector: 'app-auth',
@@ -18,8 +19,8 @@ export class AuthComponent implements OnInit {
   loginUser(username, password) {
     this.userService.authUser(username, password)
       .subscribe(data => {
-          console.log(data);
-
+          var user = JSON.parse(data['_body']);
+          this.userService.loginUser(user.username);
       }, error => {
           console.log(error);
       });

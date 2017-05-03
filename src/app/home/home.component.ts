@@ -10,16 +10,15 @@ import { UserService } from '../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  username = this.userService.getAuthenticatedUser()
+  user = this.userService.getAuthenticatedUser();
 
   constructor(private router: Router,
               private userService: UserService) { }
 
   ngOnInit() { }
 
-  public logoutUser() {
-      this.userService.logoutUser();
+  logoutUser() {
+    this.userService.logoutUser();
   }
-
 
 }

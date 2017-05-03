@@ -19,14 +19,15 @@ export class UserService {
   ) { }
 
   public authUser(username, password){
-    var data = { username: username, password: password };
-    var url = 'http://localhost:8000/api/user/auth';
+    let data = { username: username, password: password };
+    let url = 'http://localhost:8000/api/user/auth';
     return this.http.post(url, data);
   }
 
   public registerUser(name, username, password) {
-    var data = { name: 'name', username: username, password: password};
-    return this.http.post('https://smallappapi.herokuapp.com/api/user/login', data);
+    let data = { name: name, username: username, password: password };
+    let url = 'http://localhost:8000/api/user/new';
+    return this.http.post(url, data);
   }
 
   public isAuthenticated(){
@@ -37,18 +38,24 @@ export class UserService {
     }
   }
 
-  public loginUser(data){
-    window.sessionStorage.setItem('user', JSON.stringify(data._body));
-    this.router.navigate(['/home']);
+  public loginUser(username){
+    this.http.get('http://localhost:8000/api/user/' + username )
+      .subscribe(data => {
+          let user = data['_body'];
+          window.sessionStorage.setItem('user', user);
+          this.router.navigate(['/home']);
+      }, error => {
+          console.log(error);
+      });
   }
 
   public getAuthenticatedUser(){
-    let userSession = JSON.parse(window.sessionStorage.getItem('user'))
+    let userSession = JSON.parse(window.sessionStorage.getItem('user'));
     return userSession;
   }
 
   public logoutUser() {
     window.sessionStorage.clear();
-  	this.router.navigate(['/signin']);
+  	this.router.navigate(['/']);
   }
 }
