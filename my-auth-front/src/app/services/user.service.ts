@@ -19,8 +19,9 @@ export class UserService {
   ) { }
 
   public authUser(username, password){
-    var data = { name: '', username: username, password: password};
-    return this.http.post('https://smallappapi.herokuapp.com/api/user/login', data);
+    var data = { username: username, password: password };
+    var url = 'http://localhost:8000/api/user/auth';
+    return this.http.post(url, data);
   }
 
   public registerUser(name, username, password) {
@@ -37,7 +38,7 @@ export class UserService {
   }
 
   public loginUser(data){
-    window.sessionStorage.setItem('user', JSON.stringify(data.data));
+    window.sessionStorage.setItem('user', JSON.stringify(data._body));
     this.router.navigate(['/home']);
   }
 

@@ -16,16 +16,13 @@ export class AuthComponent implements OnInit {
   ngOnInit() { }
 
   loginUser(username, password) {
-    var user = {
-      data: {
-        username: username,
-        password: password
-      }
-    };
+    this.userService.authUser(username, password)
+      .subscribe(data => {
+          console.log(data);
 
-    user = JSON.parse(JSON.stringify(user));
-
-    this.userService.loginUser(user);
+      }, error => {
+          console.log(error);
+      });
   }
 
 }
